@@ -1,16 +1,13 @@
 import os
 import glob
 
-
-
 def add_include_guard(filename):
     file = open(filename,"r")
     content = [i.strip() for i in file.readlines()]
     file.close()
 
-    cap_file_name = filename.upper().replace(".","_")
-
-
+    cap_file_name = filename.upper().replace(".","_").replace(" ","_")
+    
     if(not does_contain_ifndef(content)):
         content.insert(0,"#define {0}".format(cap_file_name))
         content.insert(0,"#ifndef {0}".format(cap_file_name))
